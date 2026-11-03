@@ -1,5 +1,16 @@
-import time
+import os
+from time import sleep
+import subprocess
+from dados.dados import colonia
 from sistema.modo_economico import verificar_dados, GerenciadorEnergia
+
+def limpar_tela():
+    subprocess.run("cls" if os.name == "nt" else "clear", shell=True)
+
+def pausa():
+    input("\nPressione Enter para continuar...")
+
+
 def menu():
     print("Bem vindo ao sistema de navegação!")
     print("Escolha uma opção:")
@@ -12,46 +23,80 @@ def menu():
     print("7.")
     print("8.")
     print("9.")
-    print("10.")
     print("0. Sair")
 
 
 def main():
+    gerenciador = GerenciadorEnergia()
     while True:
+        limpar_tela()
         menu()
+        pausa()
         try:
             opcao = int(input("Digite a opção desejada: "))
 
             match opcao:
                 case 1:
-                    ...
+                    limpar_tela()
+                    print("Opção 1 selecionada.")
+                    pausa()
                 case 2:
-                    ...
+                    limpar_tela()
+                    print("Opção 2 selecionada.")
+                    pausa()
                 case 3:
-                    verificar_dados()
+                    limpar_tela()
+                    verificar_dados(colonia)
+                    pausa()
                 case 4:
-                    ...
+                    limpar_tela()
+                    print("Opção 4 selecionada.")
+                    pausa()
                 case 5:
-                    gerenciador = GerenciadorEnergia()
+                    limpar_tela()
                     print("1. Ativar modo econômico")
                     print("2. Desativar modo econômico")
                     sub_opcao = int(input("Digite a opção desejada: "))
                     if sub_opcao == 1:
                         gerenciador.ativar_modo_economico()
+                    
                     elif sub_opcao == 2:
                         gerenciador.desativar_modo_economico()
+                
                     else:
                         print("Opção inválida. Tente novamente.")
+                    pausa()
+                
                 case 6:
-                    ...
+                    limpar_tela()
+                    print("Opção 6 selecionada.")
+                    pausa()
+                case 7:
+                    limpar_tela()
+                    print("Opção 7 selecionada.")
+                    pausa()
+                case 8:         
+                    limpar_tela()
+                    print("Opção 8 selecionada.")
+                    pausa()
+                case 9:
+                    limpar_tela()
+                    print("Opção 9 selecionada.")
+                    pausa()
                 case 0:
+                    limpar_tela()
                     print("Saindo do sistema...")
-                    time.sleep(3)
+                    pausa()
                     break
                 case _:
+                    limpar_tela()
                     print("Opção inválida. Tente novamente.")
+                    pausa()
+
         except ValueError:
+            limpar_tela()
             print("Entrada inválida. Por favor, digite um número.")
+            pausa()
 
 if __name__ == "__main__":
     main()
