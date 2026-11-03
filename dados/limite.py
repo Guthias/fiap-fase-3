@@ -1,4 +1,4 @@
-economico = {
+limite = {
     "energia":{
         "solar": 30,
         "eolica": 20,
@@ -9,8 +9,8 @@ economico = {
         "reserva": 0,
     },
     "clima":{
-        "temperatura_interna": (20, 35),
-        "temperatura_externa": (5, 45),
+        "temperatura_interna": (10, 45),
+        "temperatura_externa": (0, 50),
     },
     "sistema":{
         "suporte_vida": True,
