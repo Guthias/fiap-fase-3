@@ -9,8 +9,8 @@ colonia = {
         "reserva": 30,
     },
     "clima":{
-        "temperatura_interna": 25,
-        "temperatura_externa": 15,
+        "temperatura_interna": (15,35),
+        "temperatura_externa": (5,50),
     },
     "sistema":{
         "suporte_vida": True,
