@@ -1,29 +1,109 @@
 import os
-from time import sleep
 import subprocess
 from dados.dados import colonia
+from dados.historico import historico, registrar_dia
+from dados.consumo import consumo_atual, geracao_atual
+from dados.navegacao import mostrar_hierarquia, buscar_valor
 from sistema.modo_economico import verificar_dados, GerenciadorEnergia
+from sistema.decisao import decidir
+from sistema.utilidades import input_numero
+from previsao.regressao import ajustar_reta, prever
+from previsao.gastos import analisar_gastos
+from previsao.eventos import EVENTOS, tratar_evento
+
 
 def limpar_tela():
     subprocess.run("cls" if os.name == "nt" else "clear", shell=True)
+
 
 def pausa():
     input("\nPressione Enter para continuar...")
 
 
+def ler_positivo(mensagem):
+    """Lê um número decimal maior ou igual a zero."""
+    while True:
+        valor = input_numero("float", mensagem)
+        if 0 <= valor < float("inf"):
+            return valor
+        print("Digite um valor maior ou igual a zero.")
+
+
+def ler_opcao(mensagem, minimo, maximo):
+    """Lê um número inteiro entre minimo e maximo."""
+    while True:
+        valor = input_numero("int", mensagem)
+        if minimo <= valor <= maximo:
+            return valor
+        print(f"Digite um número entre {minimo} e {maximo}.")
+
+
 def menu():
     print("Bem vindo ao sistema de navegação!")
     print("Escolha uma opção:")
-    print("1.")
-    print("2.")
+    print("1. Ver hierarquia da colônia")
+    print("2. Consultar um valor (ex: colonia/energia/solar)")
     print("3. Verificar dados")
     print("4. Verificar sistema de decisão")
     print("5. Modo econômico")
-    print("6.")
-    print("7.")
-    print("8.")
-    print("9.")
+    print("6. Previsão de energia eólica (regressão)")
+    print("7. Análise geração x consumo")
+    print("8. Eventos da colônia")
+    print("9. Registrar novo dia no histórico")
     print("0. Sair")
+
+
+def mostrar_decisao():
+    print("1. Usar os dados atuais da colônia")
+    print("2. Digitar valores para simular")
+    escolha = ler_opcao("Escolha: ", 1, 2)
+    if escolha == 1:
+        energia = colonia["energia"]["reserva"]
+        consumo = consumo_atual(colonia["sistema"])
+        geracao = geracao_atual(colonia["energia"])
+    else:
+        energia = ler_positivo("Energia (0 a 100): ")
+        consumo = ler_positivo("Consumo: ")
+        geracao = ler_positivo("Geração: ")
+    print(f"Energia: {energia} | Consumo: {consumo} | Geração: {geracao}")
+    print("Decisão:", decidir(energia, consumo, geracao))
+
+
+def mostrar_previsao():
+    vento = historico["clima"]["vento"]
+    eolica = historico["energia"]["eolica"]
+    intercepto, inclinacao = ajustar_reta(vento, eolica)
+    print(f"Reta ajustada: eólica = {intercepto:.2f} + {inclinacao:.2f} * vento")
+    novo = ler_positivo("Velocidade do vento prevista (m/s): ")
+    print(f"Energia eólica prevista: {prever(intercepto, inclinacao, novo):.1f}")
+    if novo < min(vento) or novo > max(vento):
+        print(f"Aviso: fora da faixa observada ({min(vento)} a {max(vento)} m/s); previsão pouco confiável.")
+
+
+def mostrar_gastos():
+    r = analisar_gastos(colonia["energia"], colonia["sistema"])
+    print(f"Geração: {r['geracao']} | Consumo: {r['consumo']} | Saldo: {r['saldo']}")
+    print(r["parecer"])
+    nome, valor = r["maior_consumidor"]
+    if nome is not None:
+        print(f"Maior consumidor: {nome} ({valor})")
+
+
+def menu_eventos():
+    for i in range(len(EVENTOS)):
+        print(f"{i + 1}. {EVENTOS[i]}")
+    escolha = ler_opcao("Escolha o evento: ", 1, len(EVENTOS))
+    print(tratar_evento(EVENTOS[escolha - 1], colonia["energia"]))
+
+
+def novo_dia():
+    solar = ler_positivo("Energia solar do dia: ")
+    eolica = ler_positivo("Energia eólica do dia: ")
+    vento = ler_positivo("Vento do dia (m/s): ")
+    consumo = ler_positivo("Consumo do dia: ")
+    temperatura = input_numero("float", "Temperatura externa (°C): ")
+    registrar_dia(solar, eolica, vento, consumo, temperatura)
+    print(f"Dia registrado. Total de dias no histórico: {len(historico['clima']['vento'])}")
 
 
 def main():
@@ -31,72 +111,67 @@ def main():
     while True:
         limpar_tela()
         menu()
-        pausa()
-        try:
-            opcao = int(input("Digite a opção desejada: "))
+        opcao = input_numero("int", "Digite a opção desejada: ")
 
-            match opcao:
-                case 1:
-                    limpar_tela()
-                    print("Opção 1 selecionada.")
-                    pausa()
-                case 2:
-                    limpar_tela()
-                    print("Opção 2 selecionada.")
-                    pausa()
-                case 3:
-                    limpar_tela()
-                    verificar_dados(colonia)
-                    pausa()
-                case 4:
-                    limpar_tela()
-                    print("Opção 4 selecionada.")
-                    pausa()
-                case 5:
-                    limpar_tela()
-                    print("1. Ativar modo econômico")
-                    print("2. Desativar modo econômico")
-                    sub_opcao = int(input("Digite a opção desejada: "))
-                    if sub_opcao == 1:
-                        gerenciador.ativar_modo_economico()
-                    
-                    elif sub_opcao == 2:
-                        gerenciador.desativar_modo_economico()
-                
-                    else:
-                        print("Opção inválida. Tente novamente.")
-                    pausa()
-                
-                case 6:
-                    limpar_tela()
-                    print("Opção 6 selecionada.")
-                    pausa()
-                case 7:
-                    limpar_tela()
-                    print("Opção 7 selecionada.")
-                    pausa()
-                case 8:         
-                    limpar_tela()
-                    print("Opção 8 selecionada.")
-                    pausa()
-                case 9:
-                    limpar_tela()
-                    print("Opção 9 selecionada.")
-                    pausa()
-                case 0:
-                    limpar_tela()
-                    print("Saindo do sistema...")
-                    pausa()
-                    break
-                case _:
-                    limpar_tela()
+        match opcao:
+            case 1:
+                limpar_tela()
+                mostrar_hierarquia({"colonia": colonia})
+                pausa()
+            case 2:
+                limpar_tela()
+                caminho = input("Caminho: ")
+                valor = buscar_valor({"colonia": colonia}, caminho)
+                if valor is None:
+                    print("Caminho não encontrado.")
+                else:
+                    print("Valor:", valor)
+                pausa()
+            case 3:
+                limpar_tela()
+                verificar_dados(colonia)
+                pausa()
+            case 4:
+                limpar_tela()
+                mostrar_decisao()
+                pausa()
+            case 5:
+                limpar_tela()
+                print("1. Ativar modo econômico")
+                print("2. Desativar modo econômico")
+                sub_opcao = input_numero("int", "Digite a opção desejada: ")
+                if sub_opcao == 1:
+                    gerenciador.ativar_modo_economico()
+                elif sub_opcao == 2:
+                    gerenciador.desativar_modo_economico()
+                else:
                     print("Opção inválida. Tente novamente.")
-                    pausa()
+                pausa()
+            case 6:
+                limpar_tela()
+                mostrar_previsao()
+                pausa()
+            case 7:
+                limpar_tela()
+                mostrar_gastos()
+                pausa()
+            case 8:
+                limpar_tela()
+                menu_eventos()
+                pausa()
+            case 9:
+                limpar_tela()
+                novo_dia()
+                pausa()
+            case 0:
+                limpar_tela()
+                print("Saindo do sistema...")
+                break
+            case _:
+                limpar_tela()
+                print("Opção inválida. Tente novamente.")
+                pausa()
 
-        except ValueError:
-            limpar_tela()
-            print("Entrada inválida. Por favor, digite um número.")
-            pausa()
 
 if __name__ == "__main__":
     main()
