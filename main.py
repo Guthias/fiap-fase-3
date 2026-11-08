@@ -1,13 +1,7 @@
-import os
-import subprocess
 from dados.dados import colonia
 from sistema.modo_economico import verificar_dados, GerenciadorEnergia
 from sistema.utilidades import input_numero
 from visuais.exibir_card import exibir_card
-
-
-def limpar_tela():
-    subprocess.run("cls" if os.name == "nt" else "clear", shell=True)
 
 
 def pausa():
