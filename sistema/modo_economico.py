@@ -32,6 +32,18 @@ def verificar_dados(colonia):
     else:
         print("Sistema de suporte de vida está ligado.")
 
+    if not colonia["sistema"]["laboratorio"]:
+            print("Atenção: Sistema de laboratorio está desligado.")
+    else:
+        print("Sistema de laboratorio está ligado.")
+
+    if not colonia["sistema"]["iluminacao"]:
+            print("Atenção: Sistema de iluminacao está desligado.")
+    else:
+        print("Sistema de iluminacao está ligado.")
+    
+    
+
 
 REDUCAO = 10  # Redução de 10% nos níveis de energia e combustível
 class GerenciadorEnergia:
@@ -40,6 +52,9 @@ class GerenciadorEnergia:
         self.solar_antes = 0
         self.eolica_antes = 0
         self.gasolina_antes = 0
+        self.suporte_vida_antes = True
+        self.laboratorio_antes = True
+        self.iluminacao_antes = True
 
     def ativar_modo_economico(self):
         if self.modo_economico_ativo:
@@ -49,10 +64,17 @@ class GerenciadorEnergia:
         self.solar_antes = colonia["energia"]["solar"]
         self.eolica_antes = colonia["energia"]["eolica"]  
         self.gasolina_antes = colonia["combustivel"]["gasolina"]
+        self.suporte_vida_antes = colonia["sistema"]["suporte_vida"]
+        self.laboratorio_antes = colonia["sistema"]["laboratorio"]
+        self.iluminacao_antes = colonia["sistema"]["iluminacao"]
+
 
         colonia["energia"]["solar"] = max(0, self.solar_antes - REDUCAO, 0)
         colonia["energia"]["eolica"] = max(0, self.eolica_antes - REDUCAO, 0)
         colonia["combustivel"]["gasolina"] = max(0, self.gasolina_antes - REDUCAO, 0)
+        colonia["sistema"]["suporte_vida"] = True
+        colonia["sistema"]["laboratorio"] = False
+        colonia["sistema"]["iluminacao"] = False
 
         self.modo_economico_ativo = True
         print("Modo econômico ativado. Níveis de energia e combustível reduzidos em 10%.")
@@ -66,6 +88,9 @@ class GerenciadorEnergia:
         colonia["energia"]["solar"] = self.solar_antes
         colonia["energia"]["eolica"] = self.eolica_antes
         colonia["combustivel"]["gasolina"] = self.gasolina_antes
+        colonia["sistema"]["suporte_vida"] = self.suporte_vida_antes
+        colonia["sistema"]["laboratiorio"] = self.laboratorio_antes
+        colonia["sistema"]["iluminacao"] = self.iluminacao_antes
 
         self.modo_economico_ativo = False
         print("Modo econômico desativado. Valores restaurados.")
