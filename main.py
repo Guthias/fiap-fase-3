@@ -3,34 +3,64 @@ from time import sleep
 import subprocess
 from dados.dados import colonia
 from sistema.modo_economico import verificar_dados, GerenciadorEnergia
+from sistema.utilidades import input_numero
+from visuais.exibir_card import exibir_card
+
 
 def limpar_tela():
     subprocess.run("cls" if os.name == "nt" else "clear", shell=True)
+
 
 def pausa():
     input("\nPressione Enter para continuar...")
 
 
-def menu():
-    print("Bem vindo ao sistema de navegação!")
-    print("Escolha uma opção:")
-    print("1.")
-    print("2.")
-    print("3. Verificar dados")
-    print("4. Verificar sistema de decisão")
-    print("5. Modo econômico")
-    print("6.")
-    print("7.")
-    print("8.")
-    print("9.")
-    print("0. Sair")
+def exibir_menu():
+    exibir_card(
+        "Menu Principal",
+        "Selecione uma opção",
+        [
+            "1.",
+            "2.",
+            "3. Verificar dados",
+            "4. Verificar sistema de decisão",
+            "5. Modo econômico",
+            "",
+            "0. Sair"
+        ])
 
+
+def executar_menu():
+    while True:
+        exibir_menu()
+        opcao = input_numero("int", "Digite a opção desejada: ")
+
+        match opcao:
+            case 3:
+                limpar_tela()
+                verificar_dados(colonia)
+                pausa()
+
+            case 5:
+                limpar_tela()
+                print("1. Ativar modo econômico")
+                print("2. Desativar modo econômico")
+                sub_opcao = int(input("Digite a opção desejada: "))
+                if sub_opcao == 1:
+                    gerenciador.ativar_modo_economico()
+
+                elif sub_opcao == 2:
+                    gerenciador.desativar_modo_economico()
+
+                else:
+                    print("Opção inválida. Tente novamente.")
+                pausa()
 
 def main():
     gerenciador = GerenciadorEnergia()
     while True:
         limpar_tela()
-        menu()
+        exibir_menu()
         pausa()
         try:
             opcao = int(input("Digite a opção desejada: "))
@@ -59,14 +89,14 @@ def main():
                     sub_opcao = int(input("Digite a opção desejada: "))
                     if sub_opcao == 1:
                         gerenciador.ativar_modo_economico()
-                    
+
                     elif sub_opcao == 2:
                         gerenciador.desativar_modo_economico()
-                
+
                     else:
                         print("Opção inválida. Tente novamente.")
                     pausa()
-                
+
                 case 6:
                     limpar_tela()
                     print("Opção 6 selecionada.")
@@ -75,7 +105,7 @@ def main():
                     limpar_tela()
                     print("Opção 7 selecionada.")
                     pausa()
-                case 8:         
+                case 8:
                     limpar_tela()
                     print("Opção 8 selecionada.")
                     pausa()
@@ -97,6 +127,7 @@ def main():
             limpar_tela()
             print("Entrada inválida. Por favor, digite um número.")
             pausa()
+
 
 if __name__ == "__main__":
     main()
