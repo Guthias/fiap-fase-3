@@ -139,21 +139,22 @@ O projeto utiliza regressão linear simples para analisar a relação entre a ve
 A partir dessa relação, o sistema consegue estimar valores de geração energética para novas velocidades de vento informadas pelo usuário.
 
 
-***Exemplo de utilização***
+### (Exemplo de utilização)
 
-Entrada:
+**Entrada:**
 
 ```text
 Velocidade do vento: 11 m/s
 ```
 
-Saída:
+**Saída:**
 
 ```text
 Energia eólica prevista: 27.5
 ```
 
 O sistema também apresenta um aviso quando a velocidade informada está fora da faixa de valores observados no histórico, indicando que a estimativa pode apresentar menor confiabilidade.
+
 
 ### 5.6 Análise de geração e consumo energético
 
@@ -168,6 +169,7 @@ Condição identificada / Interpretação
 
 A aplicação também identifica o sistema que apresenta o maior consumo entre os sistemas ativos, contribuindo para a interpretação dos gastos energéticos.
 
+
 ### 5.7 Simulação de eventos climáticos
 
 A aplicação permite simular diferentes acontecimentos que podem afetar o funcionamento da colônia.
@@ -178,6 +180,7 @@ Os eventos disponíveis são:
 - Queda de temperatura;
 
 Cada simulação apresenta possíveis consequências e recomendações relacionadas ao gerenciamento dos recursos e às condições operacionais.
+
 
 ### 5.8 Registro de novos dados históricos
 
@@ -193,10 +196,10 @@ Entre os dados registrados estão:
 
 Esses registros atualizam as listas históricas utilizadas nas análises e nas previsões realizadas durante a execução do programa.
 
+
 ## 6. Como executar o projeto
 
 ### 6.1 Pré-requisitos
-
 Para executar a aplicação, é necessário possuir:
 
 - Python 3.10 ou superior.
@@ -207,7 +210,7 @@ Para executar a aplicação, é necessário possuir:
 
 Primeiramente, utilize o comando abaixo para obter uma cópia do projeto:
 
-```bash
+```bash ou cmd
 git clone https://github.com/Guthias/fiap-fase-3.git
 ```
 
