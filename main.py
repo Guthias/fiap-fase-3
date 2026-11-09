@@ -1,5 +1,3 @@
-import os
-import subprocess
 from dados.dados import colonia
 from dados.historico import historico, registrar_dia
 from dados.consumo import consumo_atual, geracao_atual
@@ -10,8 +8,8 @@ from sistema.utilidades import input_numero
 from previsao.regressao import ajustar_reta, prever
 from previsao.gastos import analisar_gastos
 from previsao.eventos import EVENTOS, tratar_evento
-
-
+from visuais.exibir_card import exibir_card
+from menu_principal import exibir_menu
 
 
 def pausa():
@@ -34,21 +32,6 @@ def ler_opcao(mensagem, minimo, maximo):
         if minimo <= valor <= maximo:
             return valor
         print(f"Digite um número entre {minimo} e {maximo}.")
-
-
-def menu():
-    print("Bem vindo ao sistema de navegação!")
-    print("Escolha uma opção:")
-    print("1. Ver hierarquia da colônia")
-    print("2. Consultar um valor (ex: colonia/energia/solar)")
-    print("3. Verificar dados")
-    print("4. Verificar sistema de decisão")
-    print("5. Modo econômico")
-    print("6. Previsão de energia eólica (regressão)")
-    print("7. Análise geração x consumo")
-    print("8. Eventos da colônia")
-    print("9. Registrar novo dia no histórico")
-    print("0. Sair")
 
 
 def mostrar_decisao():
@@ -107,7 +90,7 @@ def novo_dia():
 def main():
     gerenciador = GerenciadorEnergia()
     while True:
-        menu()
+        exibir_menu()
         opcao = input_numero("int", "Digite a opção desejada: ")
 
         match opcao:
@@ -152,7 +135,7 @@ def main():
                 novo_dia()
                 pausa()
             case 0:
-                print("Saindo do sistema...")
+                exibir_card("MISSÃO FINALIZADA", "Obrigado pela jornada!", [""] + CREDITOS + [""])
                 break
             case _:
                 print("Opção inválida. Tente novamente.")

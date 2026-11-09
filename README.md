@@ -28,20 +28,47 @@ A previsão eólica usa a velocidade do vento como variável de entrada e a gera
 
 ## Exemplo de entrada e saída
 
-Na opção **6 — Previsão de energia eólica**, ao informar uma velocidade do vento de `11 m/s`, o histórico atual produz uma estimativa próxima de `27.5`:
+**Decisão (opção 4 → 2, simular valores).** Com energia 40 e consumo 70, o sistema aplica a regra de menor energia e responde:
 
-```text
+```
+Energia (0 a 100): 40
+Consumo: 70
+Geração: 0
+Decisão: ALERTA: reduzir consumo
+```
+
+Com energia 40 e consumo 90 (consumo alto), a regra de maior prioridade é acionada:
+
+```
+Decisão: MODO ECONOMIA: desligar sistemas não essenciais
+```
+
+**Análise de geração e consumo (opção 4 → 2).** Com energia 80, consumo 70 e geração 40:
+
+```
+Decisão: ALERTA: consumo maior que geração
+```
+
+Com energia 80, consumo 30 e geração 80:
+
+```
+Decisão: SUGESTÃO: armazenar energia excedente
+```
+
+**Previsão (opção 6).** Com vento de `11 m/s`, o histórico atual produz uma estimativa próxima de `27.5`:
+
+```
 Velocidade do vento prevista (m/s): 11
 Energia eólica prevista: 27.5
 ```
 
-Na opção **7 — Análise geração x consumo**, considerando geração de 40 e consumo de 70, o sistema informa:
+**Análise geração x consumo (opção 7).** Usa os dados atuais da colônia (geração solar + eólica e sistemas ligados):
 
-```text
-ALERTA: consumo maior que geração
 ```
-
-Se a geração for 80 e o consumo 30, a recomendação é armazenar a energia excedente.
+Geração: 100 | Consumo: 85 | Saldo: 15
+SUGESTÃO: armazenar energia excedente
+Maior consumidor: suporte_vida (35)
+```
 
 ## Executar o projeto
 
@@ -54,7 +81,7 @@ Não são necessárias bibliotecas externas.
 
 ### Clonar e iniciar
 
-```bash
+```
 git clone https://github.com/Guthias/fiap-fase-3.git
 cd fiap-fase-3
 python main.py
@@ -79,40 +106,37 @@ Ao iniciar `main.py`, o programa apresenta as seguintes opções:
 
 ## Estrutura do projeto
 
-```text
-├── (1) - <dados/>
-│   1.1 -├── consumo.py       # Cálculos de consumo dos sistemas ativos e geração atual;
-│   1.2 -├── dados.py         # Estado inicial da colônia;
-│   1.3 -├── historico.py     # Séries históricas e registro de novas leituras;
-│   1.4 -├── limite.py        # Estrutura de limites de referência;
-└── 1.5 -└── navegacao.py     # Exibição e consulta da hierarquia;
-
-├── (2) - <Previsao/>
-│   2.1 -├── eventos.py       # Eventos climáticos e recomendações;
-│   2.2 -├── gastos.py        # Balanço energético e maior consumidor;
-└── 2.3 -└── regressao.py     # Ajuste da reta e previsão eólica;
-
-├── (3) - <sistema/>
-│   3.1 -├── decisao.py       # Regras de decisão automatizadas;
-│   3.2 -├── energia.py       # Comparação entre geração e consumo;
-│   3.3 -├── modo_economico.py# Verificação de dados e modo econômico;
-└── 3.4 -└── utilidades.py    # Leitura de valores numéricos;
-
-├── (4) - <visuais/>
-│   4.1 - exibir_card.py   # Funções auxiliares de exibição;
-│   4.2 - main.py              # Ponto de entrada e menu executado;
-│   4.3 - menu_principal.py    # Menu visual auxiliar;
-└── 4.4 - README.md;
+```
+.
+├── main.py                 # Ponto de entrada e menu
+├── README.md
+├── dados/
+│   ├── consumo.py          # Consumo dos sistemas ativos e geração atual
+│   ├── dados.py            # Estado inicial da colônia
+│   ├── historico.py        # Séries históricas e registro de novas leituras
+│   ├── limite.py           # Limites de segurança usados na verificação
+│   └── navegacao.py        # Exibição e consulta da hierarquia
+├── previsao/
+│   ├── eventos.py          # Eventos climáticos e recomendações
+│   ├── gastos.py           # Balanço energético e maior consumidor
+│   └── regressao.py        # Ajuste da reta e previsão eólica
+├── sistema/
+│   ├── decisao.py          # Regras de decisão com prioridade
+│   ├── energia.py          # Comparação entre geração e consumo
+│   ├── modo_economico.py   # Verificação de dados e modo econômico
+│   └── utilidades.py       # Leitura de valores numéricos
+└── visuais/
+    └── exibir_card.py      # Exibição do menu em formato de card
 ```
 
 O fluxo principal atualmente é iniciado por `main.py`, que apresenta o menu no terminal. O registro de novos dias é mantido em memória e não persiste depois que a aplicação é encerrada.
 
 ## Escopo e observações
 
-- O modo econômico subtrai 10 unidades dos valores registrados de energia solar, energia eólica e gasolina (limitando-os a zero); não calcula uma redução percentual. Ao desativá-lo, restaura os valores salvos antes da ativação.
+- O modo econômico desliga laboratório e iluminação e mantém o suporte à vida ligado, o que reduz o consumo calculado. Ao desativá-lo, restaura o estado anterior dos sistemas.
 - A reserva energética é usada em algumas regras e simulações, mas a análise de geração e consumo compara a geração solar e eólica com o consumo dos sistemas ligados.
+- A opção 4 com os dados atuais usa a reserva (50) como energia; para ver os alertas e o modo economia, use a simulação com valores digitados.
 - Os eventos climáticos retornam recomendações simuladas; eles não alteram automaticamente os dados da colônia.
-- `dados/limite.py`, `menu_principal.py` e `visuais/exibir_card.py` estão no repositório, mas não são usados pelo fluxo principal de `main.py`.
 - O sistema é uma simulação acadêmica, não um controlador de recursos de uma instalação real.
 
 ## Contexto acadêmico
