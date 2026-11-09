@@ -2,6 +2,7 @@
 
 ## 1. (Sobre o projeto)
 
+
 O **Sistema Inteligente de Gerenciamento de Recursos da Colônia** é um projeto acadêmico desenvolvido como parte das atividades da Fase 3 da FIAP.
 
 A proposta consiste no desenvolvimento de um sistema integrado capaz de representar o funcionamento inteligente de uma colônia, utilizando conceitos fundamentais de programação para organizar informações, monitorar recursos, analisar o consumo energético, realizar previsões e tomar decisões automatizadas.
@@ -10,7 +11,9 @@ Desenvolvido em Python, o sistema reúne diferentes funcionalidades relacionadas
 
 A aplicação busca demonstrar como a integração entre estruturas de dados, lógica de programação e modelos matemáticos simples pode contribuir para a administração eficiente dos recursos de uma colônia.
 
+
 ## 2. (Objetivos do projeto)
+
 
 ### 2.1 Objetivo geral
 
@@ -38,6 +41,7 @@ Desenvolver um sistema computacional integrado que represente o gerenciamento in
 O projeto utiliza recursos nativos do Python, priorizando conceitos fundamentais de programação e evitando a necessidade de bibliotecas externas avançadas.
 
 ## 4. (Estrutura e organização do projeto)
+
 
 O código-fonte está organizado em três diretórios principais, responsáveis por separar as funcionalidades relacionadas à organização dos dados, às previsões e ao gerenciamento do sistema:
 
@@ -94,6 +98,7 @@ Contém as regras e funcionalidades responsáveis pelo gerenciamento e funcionam
 Representa o ponto de entrada da aplicação. É responsável por integrar os módulos, apresentar o menu principal e permitir que o usuário acesse as funcionalidades disponíveis por meio de uma interface interativa no terminal.
 
 ## 5. (Funcionalidades do sistema)
+
 
 ### 5.1 Organização e navegação dos dados
 
