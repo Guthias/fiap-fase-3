@@ -117,4 +117,4 @@ O fluxo principal atualmente é iniciado por `main.py`, que apresenta o menu no 
 
 ## Contexto acadêmico
 
-O projeto atende à proposta de integrar organização de dados, lógica de decisão, análise do uso de energia e previsão simples com regressão, priorizando clareza, funções e conceitos introdutórios de programação.
+O projeto atende à proposta de integrar organização de dados, lógica de decisão, análise do uso de energia e previsão simples com regressão, priorizando clareza, funções e conceitos introdutórios de programação. Neste projeto, não utilizamos banco de dados nem recursos de desenvolvimento mais avançados. Os dados ficam em estruturas mantidas na memória enquanto o programa está aberto; por isso, os registros feitos durante a execução não são preservados depois que ele é encerrado.
