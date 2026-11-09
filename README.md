@@ -236,7 +236,8 @@ Em alguns ambientes, pode ser necessário utilizar:
 python3 main.py
 ```
 
-Não é necessário instalar dependências externas para executar o projeto.
+Observações: "Não é necessário instalar dependências externas para executar o projeto."
+
 
 ## 7. (Exemplos de utilização)
 
@@ -267,26 +268,26 @@ SUGESTÃO: armazenar energia excedente
 ### 7.2 Sistema de decisão
 Considerando uma situação em que a disponibilidade energética é inferior ao consumo:
 
-Entrada:
+**Entrada:**
 ```text
 Energia: 40
 Consumo: 70
 Geração: 40
 ```
 
-Resultado esperado:
+**Saída:**
 ```text
 ALERTA: reduzir consumo
 ```
 
 ### 7.3 Previsão de energia eólica
 
-Entrada:
+**Entrada:**
 ```text
 Velocidade do vento: 11
 ```
 
-Resultado aproximado:
+**Saída:**
 ```text
 Energia eólica prevista: 27.5
 ```
