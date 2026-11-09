@@ -138,7 +138,8 @@ O projeto utiliza regressão linear simples para analisar a relação entre a ve
 
 A partir dessa relação, o sistema consegue estimar valores de geração energética para novas velocidades de vento informadas pelo usuário.
 
-**Exemplo de utilização**
+
+***Exemplo de utilização***
 
 Entrada:
 
