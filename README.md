@@ -16,7 +16,7 @@ Transformar informações sobre energia, consumo, clima e sistemas da colônia e
 - Ajusta uma reta por mínimos quadrados com os dados históricos de vento e geração eólica, e estima a geração para uma velocidade informada.
 - Simula recomendações para eventos climáticos predefinidos.
 - Permite registrar novas leituras diárias no histórico durante a execução.
-- Ativa e desativa um modo econômico que preserva o suporte à vida, desliga laboratório e iluminação e altera os valores de energia e combustível.
+- Ativa e desativa um modo econômico que mantém o suporte à vida ligado e desliga os sistemas não essenciais (laboratório e iluminação), reduzindo o consumo. Ao desativar, os sistemas voltam ao estado anterior.
 
 ## Como os dados e as regras estão organizados
 
@@ -107,8 +107,8 @@ Ao iniciar `main.py`, o programa apresenta as seguintes opções:
 ## Estrutura do projeto
 
 ```
-.
-├── main.py                 # Ponto de entrada e menu
+├── main.py                 # Ponto de entrada e fluxo do programa
+├── menu_principal.py       # Menu principal em formato de card
 ├── README.md
 ├── dados/
 │   ├── consumo.py          # Consumo dos sistemas ativos e geração atual

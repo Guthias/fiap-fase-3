@@ -135,7 +135,7 @@ def main():
                 novo_dia()
                 pausa()
             case 0:
-                exibir_card("MISSÃO FINALIZADA", "Obrigado pela jornada!", [""] + CREDITOS + [""])
+                exibir_card("MISSÃO FINALIZADA", "Obrigado pela jornada!", [])
                 break
             case _:
                 print("Opção inválida. Tente novamente.")
