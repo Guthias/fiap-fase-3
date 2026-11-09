@@ -87,6 +87,7 @@ Representa o ponto de entrada da aplicação. É responsável por integrar os m�
 
 ## 5. (Funcionalidades do sistema)
 
+
 ### 5.1 Organização e navegação dos dados
 
 As informações da colônia são organizadas utilizando dicionários e listas, permitindo representar diferentes subsistemas de maneira hierárquica.
