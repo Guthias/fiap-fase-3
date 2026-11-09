@@ -31,17 +31,7 @@ Desenvolver um sistema computacional integrado que represente o gerenciamento in
 - Simular eventos climáticos e suas possíveis consequências.
 - Desenvolver mecanismos de gerenciamento e economia de recursos.
 
-## 3. Tecnologias e ferramentas utilizadas
-
-| Tecnologia | Aplicação |
-| Python | Desenvolvimento da lógica e funcionalidades do sistema. |
-| Git | Controle de versão do projeto. |
-| GitHub | Hospedagem e compartilhamento do código-fonte. |
-
-O projeto utiliza recursos nativos do Python, priorizando conceitos fundamentais de programação e evitando a necessidade de bibliotecas externas avançadas.
-
 ## 4. (Estrutura e organização do projeto)
-
 
 O código-fonte está organizado em três diretórios principais, responsáveis por separar as funcionalidades relacionadas à organização dos dados, às previsões e ao gerenciamento do sistema:
 
