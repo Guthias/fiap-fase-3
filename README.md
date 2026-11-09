@@ -46,8 +46,6 @@ O projeto utiliza recursos nativos do Python, priorizando conceitos fundamentais
 O código-fonte está organizado em três diretórios principais, responsáveis por separar as funcionalidades relacionadas à organização dos dados, às previsões e ao gerenciamento do sistema:
 
 ```text
-fiap-fase-3: 
-│
 ├─  (1) - <Dados/>
 │   1.1 -├─ dados.py;
 │   1.2 -├─ historico.py;
