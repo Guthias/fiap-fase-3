@@ -80,27 +80,29 @@ Ao iniciar `main.py`, o programa apresenta as seguintes opções:
 ## Estrutura do projeto
 
 ```text
-fiap-fase-3/
-├── dados/
-│   ├── consumo.py       # Cálculos de consumo dos sistemas ativos e geração atual
-│   ├── dados.py         # Estado inicial da colônia
-│   ├── historico.py     # Séries históricas e registro de novas leituras
-│   ├── limite.py        # Estrutura de limites de referência
-│   └── navegacao.py     # Exibição e consulta da hierarquia
-├── previsao/
-│   ├── eventos.py       # Eventos climáticos e recomendações
-│   ├── gastos.py        # Balanço energético e maior consumidor
-│   └── regressao.py     # Ajuste da reta e previsão eólica
-├── sistema/
-│   ├── decisao.py       # Regras de decisão automatizadas
-│   ├── energia.py       # Comparação entre geração e consumo
-│   ├── modo_economico.py# Verificação de dados e modo econômico
-│   └── utilidades.py    # Leitura de valores numéricos
-├── visuais/
-│   └── exibir_card.py   # Funções auxiliares de exibição
-├── main.py              # Ponto de entrada e menu executado
-├── menu_principal.py    # Menu visual auxiliar
-└── README.md
+├── (1) - <dados/>
+│   1.1 -├── consumo.py       # Cálculos de consumo dos sistemas ativos e geração atual;
+│   1.2 -├── dados.py         # Estado inicial da colônia;
+│   1.3 -├── historico.py     # Séries históricas e registro de novas leituras;
+│   1.4 -├── limite.py        # Estrutura de limites de referência;
+│   1.5 -└── navegacao.py     # Exibição e consulta da hierarquia;
+
+├── (2) - <Previsao/>
+│   2.1 -├── eventos.py       # Eventos climáticos e recomendações;
+│   2.2 -├── gastos.py        # Balanço energético e maior consumidor;
+│   2.3 -└── regressao.py     # Ajuste da reta e previsão eólica;
+
+├── (3) - <sistema/>
+│   3.1 -├── decisao.py       # Regras de decisão automatizadas;
+│   3.2 -├── energia.py       # Comparação entre geração e consumo;
+│   3.3 -├── modo_economico.py# Verificação de dados e modo econômico;
+│   3.4 -└── utilidades.py    # Leitura de valores numéricos;
+
+├── (4) - <visuais/>
+│   4.1 - exibir_card.py   # Funções auxiliares de exibição;
+├── 4.2 - main.py              # Ponto de entrada e menu executado;
+├── 4.3 - menu_principal.py    # Menu visual auxiliar;
+└── 4.4 - README.md;
 ```
 
 O fluxo principal atualmente é iniciado por `main.py`, que apresenta o menu no terminal. O registro de novos dias é mantido em memória e não persiste depois que a aplicação é encerrada.
