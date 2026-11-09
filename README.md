@@ -41,12 +41,12 @@ O código-fonte está organizado em três diretórios principais, responsáveis 
 │   1.2 -├─ historico.py;
 │   1.3 -├─ consumo.py;
 │   1.4 -└─ navegacao.py;
-│
+
 ├─  (2) - <Previsao/>
 │   2.1 -├─ regressao.py;
 │   2.2 -├─ gastos.py;
 │   2.3 -└─ eventos.py;
-│
+
 ├─  (3) - <Sistema/>
 │   3.1 -├─ decisao.py;
 │   3.2 -├─ energia.py;
