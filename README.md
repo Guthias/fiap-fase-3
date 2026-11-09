@@ -141,11 +141,13 @@ A partir dessa relação, o sistema consegue estimar valores de geração energ�
 **Exemplo de utilização:**
 
 Entrada:
+
 ```text
 Velocidade do vento: 11 m/s
 ```
 
 Saída aproximada:
+
 ```text
 Energia eólica prevista: 27.5
 ```
