@@ -89,7 +89,7 @@ class GerenciadorEnergia:
         colonia["energia"]["eolica"] = self.eolica_antes
         colonia["combustivel"]["gasolina"] = self.gasolina_antes
         colonia["sistema"]["suporte_vida"] = self.suporte_vida_antes
-        colonia["sistema"]["laboratiorio"] = self.laboratorio_antes
+        colonia["sistema"]["laboratorio"] = self.laboratorio_antes
         colonia["sistema"]["iluminacao"] = self.iluminacao_antes
 
         self.modo_economico_ativo = False
