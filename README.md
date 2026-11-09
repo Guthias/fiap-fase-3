@@ -57,7 +57,7 @@ O código-fonte está organizado em três diretórios principais, responsáveis 
 └── (5) - <README.md/>
 ```
 
-### 4.1 Diretório `dados/`
+### 4.1 Diretório `dados:`
 
 Responsável pela organização, armazenamento e disponibilização das informações utilizadas pela aplicação.
 
@@ -66,14 +66,14 @@ Responsável pela organização, armazenamento e disponibilização das informa�
 - **consumo.py:** realiza cálculos relacionados ao consumo dos sistemas ativos e à geração energética.
 - **navegacao.py:** permite visualizar a organização hierárquica das informações e consultar valores por meio de caminhos específicos.
 
-### 4.2 Diretório `previsao/`
+### 4.2 Diretório `previsao:`
 Reúne funcionalidades responsáveis pelas estimativas e análises dos recursos da colônia.
 
 - **regressao.py:** implementa o cálculo de regressão linear simples para estimar a geração de energia eólica a partir da velocidade do vento.
 - **gastos.py:** realiza análises relacionadas à geração, ao consumo e ao saldo energético, identificando também o maior consumidor.
 - **eventos.py:** permite simular acontecimentos climáticos e apresentar recomendações conforme as condições da colônia.
 
-### 4.3 Diretório `sistema/`
+### 4.3 Diretório `sistema:`
 
 Contém as regras e funcionalidades responsáveis pelo gerenciamento e funcionamento da aplicação.
 
@@ -82,7 +82,7 @@ Contém as regras e funcionalidades responsáveis pelo gerenciamento e funcionam
 - **modo_economico.py:** gerencia a ativação e desativação do modo econômico, considerando a disponibilidade dos recursos.
 - **utilidades.py:** disponibiliza funções auxiliares para receber e validar entradas numéricas.
 
-### 4.4 Arquivo `main.py`
+### 4.4 Arquivo `main.py:`
 Representa o ponto de entrada da aplicação. É responsável por integrar os módulos, apresentar o menu principal e permitir que o usuário acesse as funcionalidades disponíveis por meio de uma interface interativa no terminal.
 
 ## 5. (Funcionalidades do sistema)
